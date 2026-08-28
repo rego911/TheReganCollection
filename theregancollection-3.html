@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheReganCollection — Auckland Automotive Photography</title>
+<meta name="description" content="Auckland's automotive photographer. Commercial and editorial motorcycle, dealership and track-day photography.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt: #0e1320;
+    --asphalt-2: #151c2e;
+    --asphalt-3: #1e2740;
+    --paper: #ede6d8;
+    --paper-dim: #b6ad9c;
+    --amber: #e8863c;
+    --amber-2: #f8ac66;
+    --ember: #ff7a45;
+    --chrome: #8fa3bf;
+    --white: #f6f3ec;
+    --line: rgba(246,243,236,0.13);
+    --display: 'Bebas Neue', Impact, sans-serif;
+    --body: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--asphalt);
+    color: var(--white);
+    font-family: var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--amber); color: var(--asphalt); }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--amber-2);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--amber-2);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family: var(--display);
+    font-weight:400;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    line-height:0.96;
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding: 22px 0;
+    transition: background .35s ease, padding .35s ease, border-color .35s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.scrolled{
+    background: rgba(18,21,26,0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand span{ color: var(--amber-2); }
+  nav.links{ display:flex; gap:36px; align-items:center; }
+  nav.links a{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color: var(--paper);
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute; left:0; bottom:0; height:1px; width:0;
+    background: var(--amber);
+    transition: width .3s var(--ease-pop);
+  }
+  nav.links a:hover::after, nav.links a:focus-visible::after{ width:100%; }
+  .nav-cta{
+    border:1px solid var(--amber);
+    padding:9px 18px !important;
+    border-radius:2px;
+    color: var(--amber-2) !important;
+  }
+  .nav-cta::after{ display:none; }
+  .nav-cta:hover{ background: var(--amber); color: var(--asphalt) !important; }
+  .burger{ display:none; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber-2);
+    outline-offset: 3px;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    height:100svh;
+    min-height:640px;
+    display:flex;
+    align-items:flex-end;
+    background: #000;
+  }
+  .hero-img-wrap{
+    position:absolute; inset:0; width:100%; height:100%;
+    overflow:hidden;
+    will-change: transform;
+  }
+  .hero-img{
+    width:100%; height:100%;
+    object-fit:cover; object-position: center 40%;
+    opacity:0.62;
+    animation: hero-drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes hero-drift{
+    from{ transform: scale(1.04) translateY(0); }
+    to{ transform: scale(1.11) translateY(-1.5%); }
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(12,14,17,0.35) 0%, rgba(12,14,17,0.25) 40%, rgba(12,14,17,0.92) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    width:100%;
+    padding-bottom: 90px;
+  }
+  .hero h1{
+    font-size: clamp(52px, 9.5vw, 128px);
+    max-width: 950px;
+    color: var(--white);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color: var(--amber-2);
+  }
+  .hero-sub{
+    margin-top:22px;
+    max-width:520px;
+    color: var(--paper);
+    font-size:16px;
+  }
+  .hero-cta-row{
+    margin-top:36px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family: var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:15px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    position:relative;
+    overflow:hidden;
+    transition: background .3s ease, color .3s ease, border-color .3s ease, box-shadow .35s ease;
+    will-change: transform;
+  }
+  .btn.magnetic{ transition: background .3s ease, color .3s ease, border-color .3s ease, box-shadow .35s ease, transform .5s var(--ease-pop); }
+  .btn-solid{ background: var(--amber); color: var(--asphalt); }
+  .btn-solid::before{
+    content:"";
+    position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-18deg);
+    transition: left .55s var(--ease);
+  }
+  .btn-solid:hover::before{ left:130%; }
+  .btn-solid:hover{ background: var(--amber-2); box-shadow: 0 14px 32px -10px rgba(232,134,60,0.6); }
+  .btn-ghost{ border:1px solid var(--line); color: var(--white); }
+  .btn-ghost:hover{ border-color: var(--amber-2); color: var(--amber-2); box-shadow: 0 12px 26px -12px rgba(0,0,0,0.55); }
+
+  .ripple{
+    position:absolute;
+    border-radius:50%;
+    background: rgba(255,255,255,0.5);
+    transform: scale(0);
+    animation: ripple-out .65s ease-out forwards;
+    pointer-events:none;
+  }
+  .btn-ghost .ripple{ background: rgba(248,172,102,0.35); }
+  @keyframes ripple-out{
+    to{ transform: scale(1); opacity:0; }
+  }
+
+  .hero-coords{
+    position:absolute; right:32px; bottom:28px; z-index:2;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.1em;
+    color: var(--chrome); text-align:right; line-height:1.8;
+  }
+
+  /* ============ MARQUEE ============ */
+  .marquee{
+    background: var(--amber);
+    color: var(--asphalt);
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:1px solid var(--asphalt);
+    border-bottom:1px solid var(--asphalt);
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation: scroll-left 28s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track{ animation-play-state: paused; }
+  .marquee span{
+    font-family: var(--display);
+    font-size: 26px;
+    letter-spacing:0.04em;
+    padding: 12px 28px;
+    text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:28px;
+  }
+  .marquee span::after{ content:"◆"; font-size:12px; }
+  @keyframes scroll-left{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section{ padding: 130px 0; position:relative; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom: 64px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size: clamp(38px, 5vw, 64px);
+    margin-top:14px;
+    max-width:640px;
+  }
+  .section-head p{
+    max-width:340px;
+    color: var(--chrome);
+    font-size:14.5px;
+    padding-bottom:6px;
+  }
+
+  .reveal{
+    opacity:0; transform: translateY(36px) scale(0.985);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in{ opacity:1; transform:none; }
+
+  .mask-reveal{ overflow:hidden; }
+  .mask-reveal span{
+    display:block;
+    transform: translateY(112%);
+    transition: transform 1s var(--ease-pop);
+  }
+  .mask-reveal.in span{ transform:none; }
+
+  .tilt{ will-change: transform; transition: transform .5s var(--ease); }
+  .tilt.tilting{ transition: none; }
+
+  .hero-anim{
+    opacity:0;
+    animation: hero-in 0.9s var(--ease) forwards;
+  }
+  @keyframes hero-in{
+    from{ opacity:0; transform: translateY(24px); }
+    to{ opacity:1; transform:none; }
+  }
+
+  /* ============ ABOUT ============ */
+  .about{ background: var(--asphalt); }
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px;
+    align-items:center;
+  }
+  .about-copy p{
+    color: var(--paper);
+    font-size: 17px;
+    margin-bottom: 22px;
+    max-width: 460px;
+  }
+  .about-stats{
+    display:flex;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-family: var(--display);
+    font-size: 40px;
+    color: var(--amber-2);
+    line-height:1;
+  }
+  .stat span{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color: var(--chrome);
+  }
+  .about-media{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap:14px;
+  }
+  .about-media img{
+    width:100%; height:100%; object-fit:cover;
+    border-radius:2px;
+    filter: saturate(1.02);
+    transition: transform .6s var(--ease-pop), filter .4s ease;
+  }
+  .about-media img:hover{ transform: scale(1.035); filter: saturate(1.15); }
+  .about-media{ overflow:hidden; border-radius:2px; }
+  .about-media .tall{ grid-row: span 2; height:100%; }
+  .about-media .col{ display:flex; flex-direction:column; gap:14px; }
+  .about-media .col img{ height: 100%; }
+  .frame-tag{
+    position:relative;
+  }
+  .frame-tag::after{
+    content: attr(data-tag);
+    position:absolute; left:8px; bottom:8px;
+    font-family: var(--mono); font-size:10px; letter-spacing:0.08em;
+    background: rgba(18,21,26,0.75);
+    color: var(--paper);
+    padding:3px 7px;
+    border-radius:1px;
+    text-transform:uppercase;
+  }
+
+  /* ============ FILMSTRIP / SIGNATURE GALLERY ============ */
+  .work{ background: var(--asphalt-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .filmstrip-wrap{
+    position:relative;
+  }
+  .sprocket-row{
+    display:flex; justify-content:space-between;
+    padding: 0 2px;
+    margin-bottom: 2px;
+  }
+  .sprocket-row.bottom{ margin-bottom:0; margin-top:2px; }
+  .sprocket-row span{
+    width:12px; height:8px;
+    background: var(--asphalt);
+    border: 1px solid var(--line);
+    border-radius:1px;
+  }
+  .filmstrip{
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    scroll-snap-type: x proximity;
+    padding: 18px 2px;
+    background: repeating-linear-gradient(90deg, #05060a, #05060a 2px, #0a0c10 2px, #0a0c10 100%);
+    scrollbar-width: thin;
+    scrollbar-color: var(--amber) var(--asphalt);
+  }
+  .filmstrip::-webkit-scrollbar{ height:6px; }
+  .filmstrip::-webkit-scrollbar-thumb{ background: var(--amber); }
+  .filmstrip::-webkit-scrollbar-track{ background: var(--asphalt); }
+
+  .frame{
+    position:relative;
+    flex: 0 0 auto;
+    width: 300px;
+    aspect-ratio: 3/4;
+    scroll-snap-align:start;
+    overflow:hidden;
+    background: var(--asphalt);
+  }
+  .frame{ transition: transform .45s var(--ease); }
+  .frame img{
+    width:100%; height:100%; object-fit:cover;
+    filter: grayscale(0.55) contrast(1.05);
+    transition: filter .45s ease, transform .55s var(--ease-pop);
+  }
+  .frame:hover{ transform: translateY(-6px); }
+  .frame:hover img{ filter: grayscale(0) contrast(1.08) saturate(1.1); transform: scale(1.08); }
+  .frame-num{
+    position:absolute; top:10px; left:10px;
+    font-family: var(--mono); font-size:11px; color: var(--amber-2);
+    letter-spacing:0.05em;
+  }
+  .frame-cap{
+    position:absolute; left:10px; right:10px; bottom:10px;
+    font-family: var(--mono); font-size:10.5px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color: var(--white);
+    opacity:0;
+    transform: translateY(6px);
+    transition: opacity .35s ease, transform .35s ease;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  }
+  .frame:hover .frame-cap{ opacity:1; transform:none; }
+  .filmstrip-hint{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top: 18px;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.1em;
+    color: var(--chrome); text-transform:uppercase;
+  }
+  .filmstrip-hint b{ color: var(--amber-2); font-weight:500; }
+
+  /* ============ SERVICES / PRICING ============ */
+  .services{ background: var(--asphalt); }
+  .service-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service-card{
+    background: var(--asphalt);
+    padding: 40px 32px;
+    display:flex;
+    flex-direction:column;
+    min-height: 480px;
+    position:relative;
+    transition: background .35s ease, transform .4s var(--ease), box-shadow .4s ease;
+    z-index:1;
+  }
+  .service-card:hover{
+    background: var(--asphalt-2);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px -22px rgba(0,0,0,0.6);
+    z-index:2;
+  }
+  .service-img{
+    width:100%; aspect-ratio: 4/3; object-fit:cover;
+    border-radius:2px; margin-bottom:26px;
+    filter: saturate(1.05);
+    transition: transform .5s var(--ease-pop);
+  }
+  .service-card:hover .service-img{ transform: scale(1.03); }
+  .service-tier{
+    font-family: var(--mono); font-size:11px; letter-spacing:0.14em;
+    color: var(--amber-2); text-transform:uppercase; margin-bottom:10px;
+  }
+  .service-card h3{ font-size: 30px; margin-bottom:10px; }
+  .service-price{
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+  .service-price small{
+    font-family: var(--mono); font-size:11px; color: var(--chrome); text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .service-card p{ color: var(--chrome); font-size:14.5px; flex:1; }
+  .service-link{
+    margin-top:24px;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color: var(--white);
+    display:inline-flex; align-items:center; gap:8px;
+    border-top:1px solid var(--line); padding-top:16px;
+  }
+  .service-link::after{ content:"→"; transition: transform .2s ease; }
+  .service-card:hover .service-link::after{ transform: translateX(4px); }
+
+  /* ============ PRESET BANNER ============ */
+  .banner{
+    background: var(--amber);
+    color: var(--asphalt);
+    padding: 90px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner::before{
+    content:"";
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(-45deg, rgba(18,21,26,0.06) 0 2px, transparent 2px 22px);
+  }
+  .banner-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:40px; flex-wrap:wrap; position:relative;
+  }
+  .banner h2{ font-size: clamp(34px,5vw,58px); max-width:600px; }
+  .banner .btn-solid{ background: var(--asphalt); color: var(--white); }
+  .banner .btn-solid:hover{ background: #000; }
+
+  /* ============ INSTAGRAM STRIP ============ */
+  .social{ background: var(--asphalt-2); border-top:1px solid var(--line); }
+  .social-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:36px; flex-wrap:wrap; gap:16px;
+  }
+  .social-head h3{ font-size:26px; letter-spacing:0.04em; }
+  .social-head a{
+    font-family: var(--mono); font-size:12px; letter-spacing:0.1em;
+    color: var(--amber-2); text-transform:uppercase;
+    border-bottom:1px solid var(--amber-2); padding-bottom:2px;
+  }
+  .social-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .social-grid a{
+    display:block; aspect-ratio:1; overflow:hidden; border-radius:2px; position:relative;
+  }
+  .social-grid img{ width:100%; height:100%; object-fit:cover; transition: transform .55s var(--ease-pop), filter .4s ease; filter: saturate(0.9); }
+  .social-grid a:hover img{ transform: scale(1.1) rotate(-1deg); filter: saturate(1.15); }
+
+  /* ============ CONTACT ============ */
+  .contact{ background: var(--asphalt); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+  }
+  .contact-info p{ color: var(--paper); font-size:16px; max-width:420px; margin: 18px 0 32px; }
+  .info-line{
+    display:flex; justify-content:space-between;
+    padding: 18px 0;
+    border-top:1px solid var(--line);
+    font-family: var(--mono); font-size:13px;
+  }
+  .info-line:last-child{ border-bottom:1px solid var(--line); }
+  .info-line span:first-child{ color: var(--chrome); text-transform:uppercase; letter-spacing:0.1em; font-size:11px; }
+  .info-line a:hover{ color: var(--amber-2); }
+
+  form{ display:flex; flex-direction:column; gap:20px; }
+  .field{ position:relative; }
+  .field label{
+    display:block;
+    font-family: var(--mono); font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--chrome); margin-bottom:8px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background: var(--asphalt-2);
+    border: 1px solid var(--line);
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: var(--body);
+    font-size:15px;
+    border-radius:2px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .field textarea{ resize:vertical; min-height:120px; }
+  .field input:focus, .field textarea:focus{
+    outline:none; border-color: var(--amber); background: var(--asphalt-3);
+  }
+  form .btn-solid{ align-self:flex-start; border:none; cursor:pointer; }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding: 50px 0 36px;
+    border-top:1px solid var(--line);
+    background: var(--asphalt);
+  }
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:20px;
+  }
+  .foot-links{ display:flex; gap:28px; flex-wrap:wrap; }
+  .foot-links a{
+    font-family: var(--mono); font-size:11.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--chrome);
+  }
+  .foot-links a:hover{ color: var(--amber-2); }
+  .foot-meta{ font-family: var(--mono); font-size:11px; color: var(--chrome); }
+
+  @media (max-width: 900px){
+    nav.links{ display:none; }
+    .about-grid, .contact-grid{ grid-template-columns:1fr; }
+    .about-media{ order:-1; }
+    .service-grid{ grid-template-columns:1fr; }
+    .social-grid{ grid-template-columns: repeat(3,1fr); }
+    .social-grid a:nth-child(n+4){ display:none; }
+    .hero-coords{ display:none; }
+    section{ padding: 90px 0; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding:0 20px; }
+    .about-media{ grid-template-columns:1fr; }
+    .about-media .tall{ grid-row:auto; height:220px; }
+    .about-media .col{ flex-direction:row; }
+    .about-media .col img{ height:160px; }
+    .frame{ width:220px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .marquee-track{ animation:none; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">The<span>Regan</span>Collection</a>
+    <nav class="links">
+      <a href="#work">Work</a>
+      <a href="http://gallery.theregancollection.com" target="_blank" rel="noopener">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://shop.theregancollection.com">Presets</a>
+      <a href="#contact" class="nav-cta magnetic">Book a Shoot</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="https://images-pw.pixieset.com/elementfield/je9mpwe/DSC01581-7012b5f9-1500.jpg" alt="Mirror shot of a motorcycle with mountains in the background during golden hour">
+    </div>
+    <div class="hero-content wrap">
+      <div class="eyebrow hero-anim">Auckland, NZ — Automotive Photography</div>
+      <h1 class="hero-anim">Built for speed.<br>Shot for <em>perfection.</em></h1>
+      <p class="hero-sub hero-anim">Commercial &amp; editorial automotive photography — for riders, teams, and dealerships who want their machines shot properly.</p>
+      <div class="hero-cta-row hero-anim">
+        <a href="#work" class="btn btn-solid magnetic">View the work</a>
+        <a href="#pricing" class="btn btn-ghost magnetic">See pricing</a>
+      </div>
+    </div>
+    <div class="hero-coords">36.8485° S, 174.7633° E<br>GOLDEN HOUR / F-SESSIONS</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Motorcycles<span></span></span>
+      <span>Track Days<span></span></span>
+      <span>Dealerships<span></span></span>
+      <span>Editorial<span></span></span>
+      <span>TradeMe Listings<span></span></span>
+      <span>Team Shoots<span></span></span>
+      <span>Motorcycles<span></span></span>
+      <span>Track Days<span></span></span>
+      <span>Dealerships<span></span></span>
+      <span>Editorial<span></span></span>
+      <span>TradeMe Listings<span></span></span>
+      <span>Team Shoots<span></span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <div class="eyebrow">The Story</div>
+        <h2 class="mask-reveal" style="font-size:clamp(32px,4.2vw,52px); margin:16px 0 22px;"><span>The art of the<br>automotive lens</span></h2>
+        <p>My journey began in late 2023 when I first picked up a camera, driven by a desire to capture high-quality photos of my own motorcycle.</p>
+        <p>What started as a personal interest has since grown into a true passion — leading me to work with individuals, companies, and track enthusiasts to create their own stunning, high-quality images.</p>
+        <a href="#contact" class="btn btn-ghost magnetic">Let's connect</a>
+        <div class="about-stats">
+          <div class="stat"><b>2023</b><span>First shutter click</span></div>
+          <div class="stat"><b>3+</b><span>Track day galleries</span></div>
+          <div class="stat"><b>NZ</b><span>Based in Auckland</span></div>
+        </div>
+      </div>
+      <div class="about-media reveal">
+        <img class="tall frame-tag" data-tag="Frame 01" src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC09367-Enhanced-NR-26e0e453-1000.jpg" alt="Kawasaki Ninja motorcycle photographed in the rain">
+        <div class="col">
+          <img class="frame-tag" data-tag="Frame 02" src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC01560-100bd681-1000.jpg" alt="Mirror shot with mountains in the background during golden hour">
+          <img class="frame-tag" data-tag="Frame 03" src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC09415-Enhanced-NR-51f534b3-1000.jpg" alt="Close up of a Ninja motorcycle logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILMSTRIP / SIGNATURE GALLERY -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Selected Frames</div>
+          <h2 class="mask-reveal"><span>The work</span></h2>
+        </div>
+        <p>A running contact sheet from recent shoots — bikes, riders, and the odd rainy dashboard. Drag to scroll.</p>
+      </div>
+    </div>
+    <div class="filmstrip-wrap wrap">
+      <div class="sprocket-row" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="filmstrip reveal-group" id="filmstrip">
+        <div class="frame tilt">
+          <span class="frame-num">001</span>
+          <img src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC01581-a77a4af6-1000.jpg" alt="Mirror shot with mountains in the background during golden hour" loading="lazy">
+          <span class="frame-cap">Golden hour · Mirror detail</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">002</span>
+          <img src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC09395-Enhanced-NR-a342b640-1000.jpg" alt="Motorcycle dashboard photographed in the rain" loading="lazy">
+          <span class="frame-cap">Wet asphalt · Dash detail</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">003</span>
+          <img src="https://images-pw.pixieset.com/elementfield/AQ98oM6/DSC09510-Enhanced-NR-82775db2-1500.jpg" alt="Upward angle of a black Street Triple 675 motorcycle" loading="lazy">
+          <span class="frame-cap">Street Triple 675 · Low angle</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">004</span>
+          <img src="https://images-pw.pixieset.com/elementfield/RlkmqVM/DSC04579-19afb083-1500.jpg" alt="Yellow motorcycle at golden hour sunset" loading="lazy">
+          <span class="frame-cap">Sunset session · Solo rider</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">005</span>
+          <img src="https://images-pw.pixieset.com/elementfield/0KlkG1m/DSC02499-bea0bc42-1500.jpg" alt="Group photo of motorcycles at a corporate event" loading="lazy">
+          <span class="frame-cap">Corporate group · Team shoot</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">006</span>
+          <img src="https://images-pw.pixieset.com/elementfield/DGO7q0L/DSC04628-d9b1a85b-1500.jpg" alt="Sunset golden hour shot of a yellow motorcycle" loading="lazy">
+          <span class="frame-cap">Golden hour · Second angle</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">007</span>
+          <img src="https://images-pw.pixieset.com/elementfield/Q0R1oOZ/DSC01360-a4452d48-1500.jpg" alt="Yellow motorcycle parked amongst the bushes" loading="lazy">
+          <span class="frame-cap">Backroads · Bush setting</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">008</span>
+          <img src="https://images-pw.pixieset.com/elementfield/yWxQMPn/DSC01560-987c60ee-1500.jpg" alt="Motorcycle silhouetted at sunset" loading="lazy">
+          <span class="frame-cap">Dusk · Silhouette study</span>
+        </div>
+        <div class="frame tilt">
+          <span class="frame-num">009</span>
+          <img src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC01573-55cdc805-1000.jpg" alt="Mirror shot with mountains in the background during golden hour" loading="lazy">
+          <span class="frame-cap">Golden hour · Wide detail</span>
+        </div>
+      </div>
+      <div class="sprocket-row bottom" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="filmstrip-hint">
+        <span>9 of many frames</span>
+        <span><b>Full galleries →</b> <a href="http://gallery.theregancollection.com" style="color:inherit;">gallery.theregancollection.com</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="services" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Pricing &amp; Packages</div>
+          <h2 class="mask-reveal"><span>Simple, honest rates</span></h2>
+        </div>
+        <p>Three ways to work together — from a solo golden-hour session to full showroom coverage.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="service-grid reveal-group">
+        <div class="service-card reveal tilt">
+          <img class="service-img" src="https://images-pw.pixieset.com/elementfield/RlkmqVM/DSC04579-19afb083-1500.jpg" alt="Sunset golden hour of a yellow motorcycle">
+          <div class="service-tier">Solo Rider</div>
+          <h3>You &amp; your bike</h3>
+          <div class="service-price">From $150 <small>· 1hr session</small></div>
+          <p>We'll pick a location to match your vibe. Includes a 1-hour session and 10 professionally edited photos.</p>
+          <a href="#contact" class="service-link">Enquire</a>
+        </div>
+        <div class="service-card reveal tilt">
+          <img class="service-img" src="https://images-pw.pixieset.com/elementfield/DGO7q0L/DSC04628-d9b1a85b-1500.jpg" alt="Sunset golden hour of a yellow motorcycle, second angle">
+          <div class="service-tier">Crew Session</div>
+          <h3>You &amp; your mates</h3>
+          <div class="service-price">From $500 <small>· 1.5hr session</small></div>
+          <p>Pick a couple of spots yourself, or let me suggest a few. Poses and directional pointers included. 30 edited photos.</p>
+          <a href="#contact" class="service-link">Enquire</a>
+        </div>
+        <div class="service-card reveal tilt">
+          <img class="service-img" src="https://images-pw.pixieset.com/elementfield/0KlkG1m/DSC02499-bea0bc42-1500.jpg" alt="Group photo of motorcycles for a corporate event">
+          <div class="service-tier">Commercial</div>
+          <h3>Your team</h3>
+          <div class="service-price">Price on enquiry</div>
+          <p>Team shoots, dealership showroom photography, or TradeMe listing images — tell me what you need and I'll put together a solution that fits.</p>
+          <a href="#contact" class="service-link">Enquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESET BANNER -->
+  <div class="banner">
+    <div class="wrap banner-inner">
+      <div>
+        <div class="eyebrow" style="color:var(--asphalt);">Lightroom Presets</div>
+        <h2 class="mask-reveal" style="margin-top:12px;"><span>Want to elevate<br>your own photography?</span></h2>
+      </div>
+      <a href="https://shop.theregancollection.com" class="btn btn-solid magnetic">Shop the presets</a>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <section class="social">
+    <div class="wrap">
+      <div class="social-head">
+        <h3>@theregancollection</h3>
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+      <div class="social-grid reveal-group">
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener"><img src="https://images-pw.pixieset.com/elementfield/EpzWqD7/DSC09367-Enhanced-NR-26e0e453-1000.jpg" alt="Kawasaki Ninja in the rain" loading="lazy"></a>
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener"><img src="https://images-pw.pixieset.com/elementfield/AQ98oM6/DSC09510-Enhanced-NR-82775db2-1500.jpg" alt="Street Triple 675 low angle" loading="lazy"></a>
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener"><img src="https://images-pw.pixieset.com/elementfield/RlkmqVM/DSC04579-19afb083-1500.jpg" alt="Yellow motorcycle golden hour" loading="lazy"></a>
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener"><img src="https://images-pw.pixieset.com/elementfield/Q0R1oOZ/DSC01360-a4452d48-1500.jpg" alt="Yellow motorcycle in the bushes" loading="lazy"></a>
+        <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener"><img src="https://images-pw.pixieset.com/elementfield/yWxQMPn/DSC01560-987c60ee-1500.jpg" alt="Motorcycle silhouette at sunset" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <div class="eyebrow">Get In Touch</div>
+        <h2 class="mask-reveal" style="font-size:clamp(32px,4.2vw,52px); margin-top:14px;"><span>Let's set out on a photographic adventure together</span></h2>
+        <p>Whether it's a solo bike shoot, a group ride, or a full dealership catalogue — tell me what you're picturing and I'll take it from there.</p>
+        <div class="info-line"><span>Email</span><a href="mailto:info@theregancollection.com">info@theregancollection.com</a></div>
+        <div class="info-line"><span>Instagram</span><a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener">@theregancollection</a></div>
+        <div class="info-line"><span>Based in</span><span>Auckland, New Zealand</span></div>
+        <div class="info-line"><span>Galleries</span><a href="http://gallery.theregancollection.com" target="_blank" rel="noopener">View client galleries</a></div>
+      </div>
+      <form action="mailto:info@theregancollection.com" method="post" enctype="text/plain" class="reveal">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required placeholder="Jane Rider">
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" required placeholder="jane@email.com">
+        </div>
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" required placeholder="Tell me about the shoot you're after..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid magnetic">Let's connect</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <a href="#top" class="brand" style="font-size:18px;">The<span>Regan</span>Collection</a>
+    <div class="foot-links">
+      <a href="#work">Work</a>
+      <a href="http://gallery.theregancollection.com" target="_blank" rel="noopener">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://shop.theregancollection.com">Presets</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.instagram.com/theregancollection" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="foot-meta">© 2026 TheReganCollection · Auckland, NZ</div>
+  </div>
+</footer>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // Header solid-on-scroll
+  const header = document.getElementById('siteHeader');
+  function onScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // Reveal on scroll, with staggered timing for grouped items
+  document.querySelectorAll('.reveal-group').forEach(group=>{
+    group.querySelectorAll(':scope > *').forEach((child, i)=>{
+      child.classList.add('reveal');
+      child.style.transitionDelay = (i * 90) + 'ms';
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal, .mask-reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Hero entrance sequence
+  document.querySelectorAll('.hero-anim').forEach((el,i)=>{
+    el.style.animationDelay = (i * 130) + 'ms';
+  });
+
+  if (!reduceMotion && finePointer) {
+
+    // --- Cursor glow that trails the pointer ---
+    const glow = document.createElement('div');
+    glow.style.cssText = `
+      position:fixed; top:0; left:0; width:420px; height:420px; border-radius:50%;
+      pointer-events:none; z-index:40; mix-blend-mode:screen;
+      background: radial-gradient(circle, rgba(232,134,60,0.16) 0%, rgba(232,134,60,0) 70%);
+      transform: translate(-50%,-50%); will-change: transform; transition: opacity .3s ease;
+      opacity:0;
+    `;
+    document.body.appendChild(glow);
+    let gx=0, gy=0, tx=0, ty=0;
+    window.addEventListener('mousemove', (e)=>{ tx=e.clientX; ty=e.clientY; glow.style.opacity='1'; }, { passive:true });
+    document.addEventListener('mouseleave', ()=> glow.style.opacity='0');
+    (function loop(){
+      gx += (tx-gx)*0.12; gy += (ty-gy)*0.12;
+      glow.style.transform = `translate(${gx}px, ${gy}px) translate(-50%,-50%)`;
+      requestAnimationFrame(loop);
+    })();
+
+    // --- Magnetic buttons ---
+    document.querySelectorAll('.magnetic').forEach(btn=>{
+      btn.addEventListener('mousemove', (e)=>{
+        const r = btn.getBoundingClientRect();
+        const relX = e.clientX - r.left - r.width/2;
+        const relY = e.clientY - r.top - r.height/2;
+        btn.style.transform = `translate(${relX*0.28}px, ${relY*0.4}px)`;
+      });
+      btn.addEventListener('mouseleave', ()=>{ btn.style.transform = ''; });
+      btn.addEventListener('click', (e)=>{
+        const r = btn.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        const size = Math.max(r.width, r.height) * 1.8;
+        ripple.className = 'ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - r.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - r.top - size/2) + 'px';
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', ()=> ripple.remove());
+      });
+    });
+
+    // --- 3D tilt on cards and filmstrip frames ---
+    document.querySelectorAll('.tilt').forEach(card=>{
+      let raf = null;
+      card.addEventListener('mousemove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.classList.add('tilting');
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(()=>{
+          card.style.transform = `perspective(700px) rotateX(${(-py*8).toFixed(2)}deg) rotateY(${(px*10).toFixed(2)}deg) translateY(-4px)`;
+        });
+      });
+      card.addEventListener('mouseleave', ()=>{
+        card.classList.remove('tilting');
+        card.style.transform = '';
+      });
+    });
+
+    // --- Hero parallax: image and headline drift opposite the cursor ---
+    const heroImg = document.querySelector('.hero-img-wrap');
+    const heroContent = document.querySelector('.hero-content');
+    const heroSection = document.querySelector('.hero');
+    if (heroImg && heroContent && heroSection) {
+      heroSection.addEventListener('mousemove', (e)=>{
+        const r = heroSection.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        heroImg.style.transform = `translate(${px*-18}px, ${py*-12}px)`;
+        heroContent.style.transform = `translate(${px*10}px, ${py*6}px)`;
+      });
+      heroSection.addEventListener('mouseleave', ()=>{
+        heroImg.style.transform = '';
+        heroContent.style.transform = '';
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
